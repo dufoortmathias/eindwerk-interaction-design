@@ -600,12 +600,35 @@ input::placeholder {
 \*------------------------------------*/
 
 /*
+  Components: list
+  ---
+  A list component
+*/
+
+.c-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: var(--global-whitespace);
+  grid-gap: 1rem;
+}
+
+.c-list__item {
+  grid-column: auto;
+  background-color: var(--global-color-neutral-xxx-light);
+  border-radius: 6px;
+  width: 20vh;
+  height: 20vh;
+  position: relative;
+}
+
+/*
   Component: Forms
   ---
   Everything form related here
 */
 
 .c-form-field {
+  display: block;
   position: relative;
   float: right;
   width: auto;
