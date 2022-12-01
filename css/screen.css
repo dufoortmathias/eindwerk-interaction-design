@@ -614,7 +614,7 @@ input::placeholder {
 .c-main {
   display: grid;
   grid-template-columns: 25vw 25vw 25vw 25vw;
-  grid-template-rows: 12vh 9vh 20vh 29.5vh 29.5vh;
+  grid-template-rows: 12vh 9vh 22vh 28.5vh 28.5vh;
   grid-template-areas:
     "header header header header"
     "picture picture name name"
