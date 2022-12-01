@@ -4,6 +4,7 @@
 
 :root {
   /* Global colors */
+
   --global-color-alpha-light: #4f95ff;
   --global-color-alpha: #3385ff;
   --global-color-alpha-dark: #2e77e6;
@@ -26,6 +27,8 @@
   --global-color-error-transparent: #ff3333bf;
   --global-color-error-x-transparent: #ff33334d;
 
+  /* global background color */
+  --global-background-color: #230312;
   /* global page settings */
   --global-page-color: var(--global-color-neutral-xxxx-dark);
   --global-page-backgroundColor: var(--global-color-neutral-xxxx-light);
@@ -59,6 +62,8 @@
   /*  = 48px */
   --global-whitespace-xxl: calc(var(--global-whitespace) * 3);
   /*  = 72px */
+
+  --global-border-width: 1px;
 
   /* forms */
   --global-label-color: var(--global-color-neutral-xx-dark);
@@ -103,8 +108,8 @@
 */
 
 html {
-  background-color: var(--global-page-backgroundColor);
-  color: var(--global-page-color);
+  background-color: var(--global-background-color);
+  color: white;
   font-size: 16px;
   line-height: 1.5;
   font-family: "Inter Web", Helvetica, arial, sans-serif;
@@ -599,28 +604,129 @@ input::placeholder {
 #COMPONENTS
 \*------------------------------------*/
 
-/*
-  Components: list
-  ---
-  A list component
-*/
-
-.c-list {
+.bg {
+  background-image: url("https://img.freepik.com/free-vector/gradient-summer-background-videocalls_52683-61337.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.c-main {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: var(--global-whitespace);
-  grid-gap: 1rem;
+  grid-template-columns: 25vw 25vw 25vw 25vw;
+  grid-template-rows: 12vh 9vh 20vh 29.5vh 29.5vh;
+  grid-template-areas:
+    "header header header header"
+    "picture picture name name"
+    "picture picture instructions ingredients"
+    "picture picture glass ingredients"
+    "picture picture glass ingredients";
 }
 
-.c-list__item {
-  grid-column: auto;
-  background-color: var(--global-color-neutral-xxx-light);
-  border-radius: 6px;
-  width: 20vh;
-  height: 20vh;
+.c-cocktail__name {
+  grid-area: name;
+}
+
+.c-cocktail__image {
+  grid-area: picture;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.c-cocktail__instructions {
+  grid-area: instructions;
+}
+
+.c-cocktail__glass {
+  grid-area: glass;
   position: relative;
 }
 
+.c-cocktail__ingredients {
+  grid-area: ingredients;
+}
+
+.c-header {
+  grid-area: header;
+}
+
+.c-cocktail__glass-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.c-cocktail__instructions-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.c-cocktail__ingredients-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.c-cocktail__glass-text {
+  background-color: var(--global-color-alpha);
+  color: var(--global-color-neutral-xxxx-light);
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+.c-cocktail__glass:hover .c-cocktail__glass-overlay {
+  opacity: 1;
+}
+
+.c-cocktail__glass:hover .c-cocktail__glass-image {
+  opacity: 0.5;
+}
+
+.c-cocktail__glass-overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.c-cocktail__glass-image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+hr {
+  border: 1px solid var(--global-color-neutral-xxxx-light);
+  margin: 1rem 0;
+}
+
+.c-cocktail__ingredients-table {
+  width: 100%;
+}
+
+.c-cocktail__ingredients-table {
+  text-align: center;
+  align-items: center;
+}
+
+.c-cocktail__ingredients-table,
+th,
+td {
+  border: 1px solid;
+}
+
+.table-header {
+  font-weight: bolder;
+  font-size: 16px;
+  padding: 16px 32px;
+}
 /*
   Component: Forms
   ---
@@ -628,7 +734,6 @@ input::placeholder {
 */
 
 .c-form-field {
-  display: block;
   position: relative;
   float: right;
   width: auto;
@@ -638,139 +743,6 @@ input::placeholder {
   grid-template-columns: auto auto;
   grid-gap: var(--global-whitespace-md);
 }
-
-.c-form-field--option {
-  display: flex;
-  align-items: center;
-}
-
-/*
-  Component: Input
-  ---
-  Class to put on all input="text" like form inputs
-*/
-
-.c-input {
-  --input-transition: all var(--global-transitionDuration-alpha)
-    var(--global-transitionEasing-out);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 100%;
-  border-radius: var(--input-borderRadius, var(--global-borderRadius));
-  border: var(--input-borderWidth, var(--global-borderWidth)) solid
-    var(--input-borderColor, var(--global-input-borderColor));
-  background-color: var(
-    --input-backgroundColor,
-    var(--global-input-backgroundColor)
-  );
-  color: var(--input-color, var(--global-input-color));
-  font-family: inherit;
-  font-size: 16px;
-  line-height: calc(var(--global-baseline) * 3);
-  padding: calc(var(--global-baseline) * 1.5 - var(--global-borderWidth))
-    var(--global-whitespace-md);
-  outline: none;
-  transition: var(--input-transition);
-}
-
-.c-input:hover {
-  border-color: var(
-    --input-hover-borderColor,
-    var(--global-input-hover-borderColor)
-  );
-}
-
-.c-input:focus,
-.c-input:active {
-  border-color: var(
-    --input-focus-borderColor,
-    var(--global-input-focus-borderColor)
-  );
-  box-shadow: var(--global-input-focus-boxShadowSpread)
-    var(--input-focus-boxShadowColor, var(--global-input-focus-boxShadowColor));
-}
-
-/*
-Input password with toggle checkbox on top of it needs
-more padding on the right to avoid overlap
-*/
-
-.c-input--password-with-toggle {
-  padding-right: 52px;
-}
-
-/* input password with floating label */
-/*
-.c-input--with-floating-label:focus {
-  box-shadow: 0 0 0 1px var(--global-input-focus-borderColor);
-} */
-
-/* option input for checkboxes and radio buttons */
-
-.c-option {
-  margin-right: var(--global-whitespace-sm);
-}
-
-/*
-  Component: Label
-  ---
-  Class to put on all form labels
-*/
-
-.c-label {
-  margin-bottom: 0;
-  font-size: 14px;
-  padding-bottom: var(--global-whitespace-sm);
-  line-height: calc(var(--global-baseline) * 2);
-  color: var(--label-color, var(--global-label-color));
-}
-
-.c-label--option {
-  padding-bottom: 0;
-}
-
-.c-label__error-message {
-  font-weight: 600;
-  float: right;
-  display: none;
-}
-
-.c-label__error-message.is-visible {
-  display: block;
-}
-
-.c-label--floating {
-  position: absolute;
-  top: calc(var(--global-baseline) * 1.5);
-  left: var(--global-whitespace-sm);
-  padding: var(--global-whitespace-xs) var(--global-whitespace-sm);
-  background-color: var(
-    --label--floating-backgroundColor,
-    var(--global-input-backgroundColor)
-  );
-  transition: transform var(--global-transitionDuration-alpha)
-    var(--global-transitionEasing-out);
-  z-index: 1;
-  border-radius: var(--global-borderRadius);
-}
-
-.is-floating,
-.c-form-field:focus-within .c-label--floating {
-  transform: translateY(calc(var(--global-baseline) * -3));
-}
-
-@media (prefers-color-scheme: dark) {
-  /* .c-label--floating {
-      --label--floating-backgroundColor: transparent;
-  } */
-}
-
-/*
-  Component: Button
-  ---
-  Class to put on form buttons or
-*/
 
 .c-button {
   font-size: 16px;
@@ -832,21 +804,6 @@ more padding on the right to avoid overlap
     --button-active-borderColor: var(--global-color-alpha-dark);
     --button-focus-borderColor: var(--global-color-alpha-x-dark);
   }
-}
-
-/*
-  Component: Option list
-  ---
-
-*/
-
-.c-option-list {
-  margin-bottom: var(--global-whitespace-lg);
-  display: inline-block;
-}
-
-.c-option-list__item {
-  margin-bottom: calc(var(--global-baseline) * 1.5);
 }
 
 /*
@@ -1070,7 +1027,7 @@ more padding on the right to avoid overlap
 */
 
 .c-custom-select {
-  display: block;
+  display: inline-block;
   position: relative;
   width: 20vw;
 }
@@ -1083,6 +1040,10 @@ more padding on the right to avoid overlap
   right: 12px;
   pointer-events: none;
   fill: var(--global-color-neutral-x-light);
+}
+
+.c-header-title {
+  display: inline-block;
 }
 
 /*

@@ -17,38 +17,63 @@
     <script src="script/app.js"></script>
   </head>
   <body>
-    <header>
-      <h1>The cocktail viewer</h1>
-      <p class="c-form-field">
-        <span class="c-custom-select">
-          <select
-            class="c-input c-custom-select__input js-select-categorie"
-            name="select1"
-            id="select1"
-          >
-            <option value="" disabled selected>Select your categorie</option>
-          </select>
-          <svg
-            class="c-custom-select__symbol"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <path d="M7,10l5,5,5-5Z" />
-          </svg>
-        </span>
-        <button class="o-button-reset c-button js-search-button">Search</button>
-      </p>
+    <div class="bg"></div>
+    <div class="c-main">
+      <div class="c-header">
+        <h1 class="c-header-title">The cocktail viewer</h1>
+        <p class="c-form-field">
+          <button class="o-button-reset c-button js-random-button">
+            randomize
+          </button>
+        </p>
 
-      <hr size="1" width="100%" color="grey" />
-    </header>
-    <div class="c-list">
-      <div class="c-list__item--image">
+        <hr />
+      </div>
+      <h2 class="c-cocktail__name">Amaretto Shake</h2>
+      <img
+        class="c-cocktail__image"
+        src="https://www.thecocktaildb.com/images/media/drink/xk79al1493069655.jpg"
+        alt="Amaretto Shake"
+      />
+      <div class="c-cocktail__ingredients">
+        <h3 class="c-cocktail__ingredients-title">Ingredients</h3>
+        <table class="c-cocktail__ingredients-table">
+          <tr class="table-header">
+            <td>Ingredient</td>
+            <td>Measure</td>
+          </tr>
+          <tr>
+            <td>Amaretto</td>
+            <td>1 oz</td>
+          </tr>
+          <tr>
+            <td>Ice</td>
+            <td>1 cup</td>
+          </tr>
+          <tr>
+            <td>Milk</td>
+            <td>1 cup</td>
+          </tr>
+        </table>
+      </div>
+      <div class="c-cocktail__instructions">
+        <div class="c-cocktail__instructions-title">Instructions</div>
+        Combine all ingredients in a blender and blend at high speed until
+        smooth. Serve in chilled glass garnished with bittersweet chocolate
+        shavings.
+      </div>
+      <div class="c-cocktail__glass">
         <img
-          src="https://cocktailicious.nl/wp-content/uploads/2019/10/mojito-cocktail-recept.jpg.webp"
-          alt="cocktail"
+          class="c-cocktail__glass-image"
+          src="https://tse4.mm.bing.net/th?id=OIP.Nvjw1Qpr-YrznjmRaYRR2AHaOT&pid=Api"
+          alt="glass"
         />
-        <h2 class="c-list__item--Name">test</h2>
-        <p class="c-list__item--Description">test</p>
+        <div class="c-cocktail__glass-overlay">
+          <div class="c-cocktail__glass-text">
+            Glass:<br />
+            Collins glass
+          </div>
+        </div>
       </div>
     </div>
   </body>
