@@ -41,11 +41,9 @@ const showData = async function (data) {
   glass = glass.replaceAll(" ", "_");
   glass = glass.toLowerCase();
   console.log(glass);
-  let glassImage = await getData(
-    `https://bing-image-search1.p.rapidapi.com/images/search?q=${glass}&count=1`,
-    options
-  );
-  console.log(glassImage);
+  const glassImage = await getPictureData(glass);
+  console.log(glassImage.value[0].thumbnailUrl);
+  htmlCocktailGlass.src = glassImage.value[0].thumbnailUrl;
 };
 //#endregion
 
@@ -56,6 +54,16 @@ const showData = async function (data) {
 const getData = async function (endpoint) {
   const data = await fetch(endpoint)
     .then((r) => r.json())
+    .catch((err) => console.error("an error, " + err));
+  return data;
+};
+
+const getPictureData = async function (glass) {
+  const data = await fetch(
+    `https://bing-image-search1.p.rapidapi.com/images/search?q=${glass}&count=1`,
+    options
+  )
+    .then((response) => response.json())
     .catch((err) => console.error("an error, " + err));
   return data;
 };
