@@ -625,6 +625,9 @@ input::placeholder {
 
 .c-cocktail__name {
   grid-area: name;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 .c-cocktail__image {
@@ -635,15 +638,18 @@ input::placeholder {
 
 .c-cocktail__instructions {
   grid-area: instructions;
+  margin-left: 1vw;
 }
 
 .c-cocktail__glass {
   grid-area: glass;
   position: relative;
+  margin-left: 1vw;
 }
 
 .c-cocktail__ingredients {
   grid-area: ingredients;
+  margin-left: 1vw;
 }
 
 .c-header {
