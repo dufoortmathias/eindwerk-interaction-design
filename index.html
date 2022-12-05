@@ -14,6 +14,7 @@
     <!-- <link rel="manifest" href="manifest.json" /> -->
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/screen.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script/app.js"></script>
   </head>
   <body>
@@ -76,6 +77,15 @@
             Collins glass
           </div>
         </div>
+      </div>
+      <div class="c-cocktail__alcohol js-cocktail-alcohol">
+        <h3 class="c-cocktail__alcohol-title">Alcohol percentage</h3>
+        <canvas class="js-cocktail-alcohol-chart" width="1" height="2"></canvas>
+      </div>
+      <div
+        class="c-cocktail__nonalcohol o-hide-accessible js-cocktail-nonalcohol"
+      >
+        <h3 class="c-cocktail__nonalcohol-title">Non-alcohol</h3>
       </div>
     </div>
   </body>

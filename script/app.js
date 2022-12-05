@@ -6,7 +6,10 @@ let htmlRandomButton,
   htmlCocktailInstructions,
   htmlCocktailGlass,
   htmlCocktailIngredients,
-  htmlCocktailGlassText;
+  htmlCocktailGlassText,
+  htmlCocktailAlcohol,
+  htmlCocktailAlcoholChart,
+  htmlCocktailNonAlcohol;
 
 const options = {
   method: "GET",
@@ -44,6 +47,40 @@ const showData = async function (data) {
   const glassImage = await getPictureData(glass);
   console.log(glassImage.value[0].thumbnailUrl);
   htmlCocktailGlass.src = glassImage.value[0].thumbnailUrl;
+
+  if (data.strAlcoholic == "Alcoholic") {
+    showAlcoholData();
+  } else {
+    showNonAlcoholData();
+  }
+};
+
+const showAlcoholData = function () {
+  htmlCocktailAlcohol.classList.remove("o-hide-accessible");
+  htmlCocktailNonAlcohol.classList.add("o-hide-accessible");
+
+  const alcohol = Math.round(Math.random() * 30 * 10) / 10;
+  const data = {
+    labels: ["Alcohol", "Rest Of Drink"],
+    datasets: [
+      {
+        label: "Alcohol Percentage",
+        data: [alcohol, 100 - alcohol],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
+        hoverOffset: 4,
+      },
+    ],
+  };
+  const config = {
+    type: "pie",
+    data: data,
+  };
+  new Chart(htmlCocktailAlcoholChart, config);
+};
+
+const showNonAlcoholData = function () {
+  htmlCocktailAlcohol.classList.add("o-hide-accessible");
+  htmlCocktailNonAlcohol.classList.remove("o-hide-accessible");
 };
 //#endregion
 
@@ -97,6 +134,12 @@ const init = function () {
   );
   htmlCocktailIngredients = document.querySelector(".js-cocktail-ingredients");
   htmlCocktailGlassText = document.querySelector(".js-cocktail-glass-text");
+  htmlCocktailAlcohol = document.querySelector(".js-cocktail-alcohol");
+  htmlCocktailAlcoholChart = document.querySelector(
+    ".js-cocktail-alcohol-chart"
+  );
+  htmlCocktailNonAlcohol = document.querySelector(".js-cocktail-nonalcohol");
+
   listenToRandomButton();
   getRandomCocktail();
 };

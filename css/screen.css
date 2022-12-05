@@ -614,13 +614,13 @@ input::placeholder {
 .c-main {
   display: grid;
   grid-template-columns: 25vw 25vw 25vw 25vw;
-  grid-template-rows: 12vh 9vh 22vh 28.5vh 28.5vh;
+  grid-template-rows: 12vh 9vh 22vh 27vh 30vh;
   grid-template-areas:
     "header header header header"
     "picture picture name name"
     "picture picture instructions ingredients"
     "picture picture glass ingredients"
-    "picture picture glass ingredients";
+    "picture picture glass alcohol";
 }
 
 .c-cocktail__name {
@@ -654,6 +654,18 @@ input::placeholder {
 
 .c-header {
   grid-area: header;
+}
+
+.c-cocktail__alcohol {
+  grid-area: alcohol;
+  margin-left: 1vw;
+  max-height: 20vh;
+  max-width: 25vw;
+}
+
+.c-cocktail__nonalcohol {
+  grid-area: alcohol;
+  margin-left: 1vw;
 }
 
 .c-cocktail__glass-image {
