@@ -605,15 +605,7 @@ input::placeholder {
 \*------------------------------------*/
 
 .c-main {
-  display: grid;
-  grid-template-columns: 20vw 20vw 30vw 30vw;
-  grid-template-rows: 12vh 9vh 22vh 27vh 30vh;
-  grid-template-areas:
-    "header header header header"
-    "picture picture name name"
-    "picture picture instructions ingredients"
-    "picture picture glass ingredients"
-    "picture picture glass alcohol";
+  display: block;
 }
 
 .c-cocktail__name {
@@ -740,6 +732,20 @@ td {
   font-size: 16px;
   padding: 16px 32px;
 }
+
+@media (min-width: 690px) {
+  .c-main {
+    display: grid;
+    grid-template-columns: 20vw 20vw 30vw 30vw;
+    grid-template-rows: 12vh 9vh 22vh 27vh 30vh;
+    grid-template-areas:
+      "header header header header"
+      "picture picture name name"
+      "picture picture instructions ingredients"
+      "picture picture glass ingredients"
+      "picture picture glass alcohol";
+  }
+}
 /*
   Component: Forms
   ---
@@ -777,7 +783,13 @@ td {
   transition: all var(--global-transitionDuration-alpha)
     var(--global-transitionEasing-out);
   display: inline-block;
-  max-width: 10vw;
+  width: auto;
+}
+
+@media (min-width: 690px) {
+  .c-button {
+    display: block;
+  }
 }
 
 .c-button:hover {
