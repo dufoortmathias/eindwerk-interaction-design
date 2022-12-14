@@ -604,16 +604,9 @@ input::placeholder {
 #COMPONENTS
 \*------------------------------------*/
 
-.bg {
-  background-image: url("https://img.freepik.com/free-vector/gradient-summer-background-videocalls_52683-61337.jpg");
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 .c-main {
   display: grid;
-  grid-template-columns: 25vw 25vw 25vw 25vw;
+  grid-template-columns: 20vw 20vw 30vw 30vw;
   grid-template-rows: 12vh 9vh 22vh 27vh 30vh;
   grid-template-areas:
     "header header header header"
@@ -639,6 +632,8 @@ input::placeholder {
 .c-cocktail__instructions {
   grid-area: instructions;
   margin-left: 1vw;
+  max-height: 100%;
+  overflow-y: auto;
 }
 
 .c-cocktail__glass {
@@ -670,8 +665,8 @@ input::placeholder {
 
 .c-cocktail__glass-image {
   display: block;
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .c-cocktail__instructions-title {
@@ -950,6 +945,8 @@ td {
     var(--global-transitionEasing-out);
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-top: 2vh;
 }
 
 .c-custom-toggle--inverted {
@@ -1020,22 +1017,6 @@ td {
   + .c-custom-toggle
   .c-custom-toggle__fake-input::after {
   margin-left: -6px;
-}
-
-@media (prefers-color-scheme: dark) {
-  .c-custom-toggle-list {
-    --toggle-list-borderColor: var(--global-color-neutral-xx-dark);
-  }
-
-  .c-custom-toggle {
-    --toggle-backgroundColor: var(--global-input-backgroundColor);
-    --toggle-checked-borderColor: var(--toggle-checked-backgroundColor);
-    --toggle-focus-boxShadow: 0 0 0 1px var(--global-color-neutral-xxxx-dark),
-      var(--global-input-focus-boxShadowSpread)
-        var(--global-input-focus-boxShadowColor);
-    --toggle__switch-backgroundColor: var(--global-color-neutral-dark);
-    --toggle__switch-checked-backgroundColor: White;
-  }
 }
 
 /*

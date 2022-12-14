@@ -9,7 +9,8 @@ let htmlRandomButton,
   htmlCocktailGlassText,
   htmlCocktailAlcohol,
   htmlCocktailAlcoholChart,
-  htmlCocktailNonAlcohol;
+  htmlCocktailNonAlcohol,
+  htmlToggleButton;
 
 const options = {
   method: "GET",
@@ -58,8 +59,12 @@ const showData = async function (data) {
 const showAlcoholData = function () {
   htmlCocktailAlcohol.classList.remove("o-hide-accessible");
   htmlCocktailNonAlcohol.classList.add("o-hide-accessible");
+  var myChart = document.getElementById("alcohol-chart").getContext("2d");
+
+  if (window.myChart !== undefined) window.myChart.destroy();
 
   const alcohol = Math.round(Math.random() * 30 * 10) / 10;
+  console.log(alcohol);
   const data = {
     labels: ["Alcohol", "Rest Of Drink"],
     datasets: [
@@ -75,7 +80,7 @@ const showAlcoholData = function () {
     type: "pie",
     data: data,
   };
-  new Chart(htmlCocktailAlcoholChart, config);
+  window.myChart = new Chart(myChart, config);
 };
 
 const showNonAlcoholData = function () {
@@ -106,15 +111,35 @@ const getPictureData = async function (glass) {
 };
 
 const getRandomCocktail = async function () {
-  const data = await getData(`${baseUrl}random.php`);
-  console.log(data);
-  showData(data.drinks[0]);
+  let alcohol = false;
+  let toggleState = htmlToggleButton.checked;
+  while (alcohol == false) {
+    console.log(alcohol);
+    const data = await getData(`${baseUrl}random.php`);
+    let dataAlcohol = data.drinks[0].strAlcoholic;
+    if (dataAlcohol == "Alcoholic") {
+      if (toggleState == false) {
+        showData(data.drinks[0]);
+        alcohol = true;
+      }
+    } else if (dataAlcohol == "Non alcoholic") {
+      if (toggleState == true) {
+        showData(data.drinks[0]);
+        alcohol = true;
+      }
+    } else {
+      alcohol = false;
+    }
+  }
 };
 //#endregion
 
 //#region ***  Event Listeners - listenTo___            ***********
-const listenToRandomButton = function () {
+const listenToButtons = function () {
   htmlRandomButton.addEventListener("click", function () {
+    getRandomCocktail();
+  });
+  htmlToggleButton.addEventListener("change", function () {
     getRandomCocktail();
   });
 };
@@ -139,8 +164,9 @@ const init = function () {
     ".js-cocktail-alcohol-chart"
   );
   htmlCocktailNonAlcohol = document.querySelector(".js-cocktail-nonalcohol");
+  htmlToggleButton = document.querySelector(".js-toggle-button");
 
-  listenToRandomButton();
+  listenToButtons();
   getRandomCocktail();
 };
 

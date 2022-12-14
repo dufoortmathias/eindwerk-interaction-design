@@ -27,6 +27,17 @@
             randomize
           </button>
         </p>
+        <p class="c-form-field">
+          <input
+            class="o-hide-accessible c-option c-option--hidden js-toggle-button"
+            type="checkbox"
+            id="toggle1"
+          />
+          <label class="c-label c-label--option c-custom-toggle" for="toggle1">
+            <span class="c-custom-toggle__fake-input"> </span>
+            Non Alcoholic
+          </label>
+        </p>
 
         <hr />
       </div>
@@ -80,7 +91,12 @@
       </div>
       <div class="c-cocktail__alcohol js-cocktail-alcohol">
         <h3 class="c-cocktail__alcohol-title">Alcohol percentage</h3>
-        <canvas class="js-cocktail-alcohol-chart" width="1" height="2"></canvas>
+        <canvas
+          class="js-cocktail-alcohol-chart"
+          id="alcohol-chart"
+          width="1"
+          height="2"
+        ></canvas>
       </div>
       <div
         class="c-cocktail__nonalcohol o-hide-accessible js-cocktail-nonalcohol"
